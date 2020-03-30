@@ -6,17 +6,17 @@ namespace PseudoJsTranslator.Grammar
 {
     internal class ErrorListener : BaseErrorListener
     {
-        private readonly List<string> errors = new List<string>();
+        private readonly List<SyntaxError> errors = new List<SyntaxError>();
 
         public override void SyntaxError(IRecognizer recognizer, IToken offendingSymbol, int line,
                                          int charPositionInLine, string msg, RecognitionException e)
         {
-            errors.Add($"Error ({line}:{charPositionInLine}): {msg}.");
+            errors.Add(new SyntaxError(recognizer, offendingSymbol, line, charPositionInLine, msg, e));
         }
 
         public override string ToString()
         {
-            return String.Join('\n', errors);
+            return string.Join('\n', errors);
         }
     }
 }
