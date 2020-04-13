@@ -117,6 +117,7 @@ namespace PseudoJsTranslator.Grammar
                 e.Data.Add("Position", GenerateErrorLocationMessage(context));
                 throw;
             }
+
             return new NumericLiteral(context, v);
         }
 
