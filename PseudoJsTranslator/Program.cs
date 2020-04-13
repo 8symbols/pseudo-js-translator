@@ -12,7 +12,7 @@ namespace PseudoJsTranslator
     {
         public static void Main()
         {
-            var parser = CreateParser("function foo() { return function(b) { return a + b } }");
+            var parser = CreateParser("function foo(a) { return function(b) { return a + b } }");
             var parseTree = TryToBuildParseTree(parser);
             if (parseTree == null)
             {
