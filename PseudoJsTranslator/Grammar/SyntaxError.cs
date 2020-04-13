@@ -11,8 +11,13 @@ namespace PseudoJsTranslator.Grammar
         public string Msg { get; }
         public RecognitionException E { get; }
 
-        public SyntaxError(IRecognizer recognizer, IToken offendingSymbol, int line,
-                           int charPositionInLine, string msg, RecognitionException e)
+        public SyntaxError(
+            IRecognizer recognizer,
+            IToken offendingSymbol,
+            int line,
+            int charPositionInLine,
+            string msg,
+            RecognitionException e)
         {
             Recognizer = recognizer;
             OffendingSymbol = offendingSymbol;
@@ -22,9 +27,6 @@ namespace PseudoJsTranslator.Grammar
             E = e;
         }
 
-        public override string ToString()
-        {
-            return $"Error ({Line}:{CharPositionInLine}): {Msg}.";
-        }
+        public override string ToString() => $"Error ({Line}:{CharPositionInLine}): {Msg}.";
     }
 }
