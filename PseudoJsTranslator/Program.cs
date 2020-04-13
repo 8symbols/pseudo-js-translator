@@ -1,46 +1,78 @@
-﻿using Antlr4.Runtime;
+﻿#nullable enable
+
+using Antlr4.Runtime;
+using Antlr4.Runtime.Tree;
+using PseudoJsTranslator.Ast;
 using PseudoJsTranslator.Grammar;
 using System;
-using System.IO;
 
 namespace PseudoJsTranslator
 {
-    internal class Program
+    public static class Program
     {
-        private static void Main(string[] args)
+        public static void Main()
         {
-            var stream = new AntlrInputStream(File.ReadAllText("script.js"));
-            var lexer = new ECMAScriptLexer(stream);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            tokens.Fill();
-            foreach (var token in tokens.GetTokens())
+            var parser = CreateParser("function foo() { return function(b) { return a + b } }");
+            var parseTree = TryToBuildParseTree(parser);
+            if (parseTree == null)
             {
-                Console.WriteLine(token.ToString());
+                return;
             }
+            var ast = TryToBuildAst(parseTree);
+            if (ast == null)
+            {
+                return;
+            }
+            PrintAsciiTree(ast);
+        }
 
-            var parser = new ECMAScriptParser(tokens)
+        public static ECMAScriptParser CreateParser(string input)
+        {
+            var stream = new AntlrInputStream(input);
+            var lexer = new ECMAScriptLexer(stream);
+            lexer.SetStrictMode(true);
+            var tokens = new CommonTokenStream(lexer);
+            return new ECMAScriptParser(tokens)
             {
                 BuildParseTree = true
             };
+        }
+
+        public static IParseTree? TryToBuildParseTree(ECMAScriptParser parser)
+        {
             var listener = new ErrorListener();
             parser.AddErrorListener(listener);
-            var context = parser.program();
+            var program = parser.program();
             if (parser.NumberOfSyntaxErrors != 0)
             {
                 Console.Error.WriteLine(listener.ToString());
-                return;
             }
+            parser.RemoveErrorListener(listener);
+            return (parser.NumberOfSyntaxErrors == 0) ? program : null;
+        }
 
+        public static Node? TryToBuildAst(IParseTree parseTree)
+        {
             try
             {
-                var visitor = new ECMAScriptVisitor();
-                visitor.Visit(context);
-                Console.WriteLine(context.ToStringTree());
+                return new AstBuilderVisitor().Visit(parseTree);
             }
-            catch (NotImplementedException e)
+            catch (Exception e)
             {
+                if (e.Data.Contains("Position"))
+                {
+                    Console.Error.Write(e.Data["Position"]);
+                }
                 Console.Error.WriteLine(e.Message);
+                return null;
             }
+        }
+
+        public static void PrintAsciiTree(Node ast)
+        {
+            var asciiBuilder = new AsciiTreeBuilderVisitor();
+            asciiBuilder.Visit(ast);
+            Console.Write(asciiBuilder.GetStringTree());
         }
     }
 }
