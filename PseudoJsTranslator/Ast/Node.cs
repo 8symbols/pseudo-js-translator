@@ -9,31 +9,34 @@ namespace PseudoJsTranslator.Ast
     {
         public SourceLocation? Loc { get; set; }
 
-        protected Node(ParserRuleContext context)
+        protected Node(ParserRuleContext? context)
         {
-            var start = new Position((uint)context.Start.Line, (uint)context.Start.Column);
-            var end = new Position((uint)context.Stop.Line, (uint)context.Stop.Column);
-            Loc = new SourceLocation(start, end);
+            if (context != null)
+            {
+                var start = new Position((uint)context.Start.Line, (uint)context.Start.Column);
+                var end = new Position((uint)context.Stop.Line, (uint)context.Stop.Column);
+                Loc = new SourceLocation(start, end);
+            }
         }
     }
 
     public abstract class Statement : Node
     {
-        protected Statement(ParserRuleContext context) : base(context)
+        protected Statement(ParserRuleContext? context) : base(context)
         {
         }
     }
 
     public abstract class Declaration : Statement
     {
-        protected Declaration(ParserRuleContext context) : base(context)
+        protected Declaration(ParserRuleContext? context) : base(context)
         {
         }
     }
 
     public abstract class Expression : Node
     {
-        protected Expression(ParserRuleContext context) : base(context)
+        protected Expression(ParserRuleContext? context) : base(context)
         {
         }
     }
@@ -49,7 +52,7 @@ namespace PseudoJsTranslator.Ast
     {
         public string Name { get; set; }
 
-        public Identifier(ParserRuleContext context, string name) : base(context)
+        public Identifier(ParserRuleContext? context, string name) : base(context)
         {
             Name = name;
         }
@@ -59,7 +62,7 @@ namespace PseudoJsTranslator.Ast
     {
         public T Value { get; set; }
 
-        protected Literal(ParserRuleContext context, T value) : base(context)
+        protected Literal(ParserRuleContext? context, T value) : base(context)
         {
             Value = value;
         }
@@ -67,28 +70,28 @@ namespace PseudoJsTranslator.Ast
 
     public class StringLiteral : Literal<string>
     {
-        public StringLiteral(ParserRuleContext context, string value) : base(context, value)
+        public StringLiteral(ParserRuleContext? context, string value) : base(context, value)
         {
         }
     }
 
     public class BooleanLiteral : Literal<bool>
     {
-        public BooleanLiteral(ParserRuleContext context, bool value) : base(context, value)
+        public BooleanLiteral(ParserRuleContext? context, bool value) : base(context, value)
         {
         }
     }
 
     public class NullLiteral : Literal<object>
     {
-        public NullLiteral(ParserRuleContext context) : base(context, "null literal value")
+        public NullLiteral(ParserRuleContext? context) : base(context, "null literal value")
         {
         }
     }
 
     public class NumericLiteral : Literal<double>
     {
-        public NumericLiteral(ParserRuleContext context, double value) : base(context, value)
+        public NumericLiteral(ParserRuleContext? context, double value) : base(context, value)
         {
         }
     }
@@ -97,7 +100,7 @@ namespace PseudoJsTranslator.Ast
     {
         public List<Statement> Body { get; set; } = new List<Statement>();
 
-        public Program(ParserRuleContext context) : base(context)
+        public Program(ParserRuleContext? context) : base(context)
         {
         }
     }
@@ -106,7 +109,7 @@ namespace PseudoJsTranslator.Ast
     {
         public Expression Expression { get; set; }
 
-        public ExpressionStatement(ParserRuleContext context, Expression expression) : base(context)
+        public ExpressionStatement(ParserRuleContext? context, Expression expression) : base(context)
         {
             Expression = expression;
         }
@@ -116,21 +119,21 @@ namespace PseudoJsTranslator.Ast
     {
         public List<Statement> Body { get; set; } = new List<Statement>();
 
-        public BlockStatement(ParserRuleContext context) : base(context)
+        public BlockStatement(ParserRuleContext? context) : base(context)
         {
         }
     }
 
     public class FunctionBody : BlockStatement
     {
-        public FunctionBody(ParserRuleContext context) : base(context)
+        public FunctionBody(ParserRuleContext? context) : base(context)
         {
         }
     }
 
     public class EmptyStatement : Statement
     {
-        public EmptyStatement(ParserRuleContext context) : base(context)
+        public EmptyStatement(ParserRuleContext? context) : base(context)
         {
         }
     }
@@ -139,21 +142,21 @@ namespace PseudoJsTranslator.Ast
     {
         public Expression? Argument { get; set; }
 
-        public ReturnStatement(ParserRuleContext context) : base(context)
+        public ReturnStatement(ParserRuleContext? context) : base(context)
         {
         }
     }
 
     public class BreakStatement : Statement
     {
-        public BreakStatement(ParserRuleContext context) : base(context)
+        public BreakStatement(ParserRuleContext? context) : base(context)
         {
         }
     }
 
     public class ContinueStatement : Statement
     {
-        public ContinueStatement(ParserRuleContext context) : base(context)
+        public ContinueStatement(ParserRuleContext? context) : base(context)
         {
         }
     }
@@ -164,7 +167,7 @@ namespace PseudoJsTranslator.Ast
         public Statement Consequent { get; set; }
         public Statement? Alternate { get; set; }
 
-        public IfStatement(ParserRuleContext context, Expression test, Statement consequent) : base(context)
+        public IfStatement(ParserRuleContext? context, Expression test, Statement consequent) : base(context)
         {
             Test = test;
             Consequent = consequent;
@@ -176,7 +179,7 @@ namespace PseudoJsTranslator.Ast
         public Expression Test { get; set; }
         public Statement Body { get; set; }
 
-        public WhileStatement(ParserRuleContext context, Expression test, Statement body) : base(context)
+        public WhileStatement(ParserRuleContext? context, Expression test, Statement body) : base(context)
         {
             Test = test;
             Body = body;
@@ -189,7 +192,7 @@ namespace PseudoJsTranslator.Ast
         public List<Identifier> Params { get; set; } = new List<Identifier>();
         public FunctionBody Body { get; set; }
 
-        public FunctionDeclaration(ParserRuleContext context, FunctionBody body, Identifier id) : base(context)
+        public FunctionDeclaration(ParserRuleContext? context, FunctionBody body, Identifier id) : base(context)
         {
             Body = body;
             Id = id;
@@ -200,7 +203,7 @@ namespace PseudoJsTranslator.Ast
     {
         public List<VariableDeclarator> Declarations { get; set; } = new List<VariableDeclarator>();
 
-        public VariableDeclaration(ParserRuleContext context) : base(context)
+        public VariableDeclaration(ParserRuleContext? context) : base(context)
         {
         }
     }
@@ -210,7 +213,7 @@ namespace PseudoJsTranslator.Ast
         public Identifier Id { get; set; }
         public Expression? Init { get; set; }
 
-        public VariableDeclarator(ParserRuleContext context, Identifier id) : base(context)
+        public VariableDeclarator(ParserRuleContext? context, Identifier id) : base(context)
         {
             Id = id;
         }
@@ -220,7 +223,7 @@ namespace PseudoJsTranslator.Ast
     {
         public List<Expression?> Elements { get; set; } = new List<Expression?>();
 
-        public ArrayExpression(ParserRuleContext context) : base(context)
+        public ArrayExpression(ParserRuleContext? context) : base(context)
         {
         }
     }
@@ -229,7 +232,7 @@ namespace PseudoJsTranslator.Ast
     {
         public List<Property> Elements { get; set; } = new List<Property>();
 
-        public ObjectExpression(ParserRuleContext context) : base(context)
+        public ObjectExpression(ParserRuleContext? context) : base(context)
         {
         }
     }
@@ -243,7 +246,7 @@ namespace PseudoJsTranslator.Ast
 
         public Expression Value { get; set; }
 
-        public Property(ParserRuleContext context, Expression key, Expression value) : base(context)
+        public Property(ParserRuleContext? context, Expression key, Expression value) : base(context)
         {
             Key = key;
             Value = value;
@@ -256,7 +259,7 @@ namespace PseudoJsTranslator.Ast
         public List<Identifier> Params { get; set; } = new List<Identifier>();
         public FunctionBody Body { get; set; }
 
-        public FunctionExpression(ParserRuleContext context, FunctionBody body) : base(context)
+        public FunctionExpression(ParserRuleContext? context, FunctionBody body) : base(context)
         {
             Body = body;
         }
@@ -268,7 +271,7 @@ namespace PseudoJsTranslator.Ast
         public Expression Argument { get; set; }
 
         public UnaryExpression(
-            ParserRuleContext context,
+            ParserRuleContext? context,
             UnaryOperator anOperator,
             Expression argument) : base(context)
         {
@@ -284,7 +287,7 @@ namespace PseudoJsTranslator.Ast
         public Expression Right { get; set; }
 
         protected BinaryOperatorExpression(
-            ParserRuleContext context,
+            ParserRuleContext? context,
             T anOperator,
             Expression left,
             Expression right) : base(context)
@@ -298,7 +301,7 @@ namespace PseudoJsTranslator.Ast
     public class BinaryExpression : BinaryOperatorExpression<BinaryOperator>
     {
         public BinaryExpression(
-            ParserRuleContext context,
+            ParserRuleContext? context,
             BinaryOperator anOperator,
             Expression left,
             Expression right) : base(context, anOperator, left, right)
@@ -309,7 +312,7 @@ namespace PseudoJsTranslator.Ast
     public class AssignmentExpression : BinaryOperatorExpression<AssignmentOperator>
     {
         public AssignmentExpression(
-            ParserRuleContext context,
+            ParserRuleContext? context,
             AssignmentOperator anOperator,
             Expression left,
             Expression right) : base(context, anOperator, left, right)
@@ -320,7 +323,7 @@ namespace PseudoJsTranslator.Ast
     public class LogicalExpression : BinaryOperatorExpression<LogicalOperator>
     {
         public LogicalExpression(
-            ParserRuleContext context,
+            ParserRuleContext? context,
             LogicalOperator anOperator,
             Expression left,
             Expression right) : base(context, anOperator, left, right)
@@ -341,7 +344,7 @@ namespace PseudoJsTranslator.Ast
         public bool Computed { get; set; }
 
         public MemberExpression(
-            ParserRuleContext context,
+            ParserRuleContext? context,
             Expression anObject,
             Expression property,
             bool computed) : base(context)
@@ -357,7 +360,7 @@ namespace PseudoJsTranslator.Ast
         public Expression Callee { get; set; }
         public List<Expression> Arguments { get; set; } = new List<Expression>();
 
-        public CallExpression(ParserRuleContext context, Expression callee) : base(context)
+        public CallExpression(ParserRuleContext? context, Expression callee) : base(context)
         {
             Callee = callee;
         }
@@ -367,7 +370,7 @@ namespace PseudoJsTranslator.Ast
     {
         public List<Expression> Expressions { get; set; } = new List<Expression>();
 
-        public SequenceExpression(ParserRuleContext context) : base(context)
+        public SequenceExpression(ParserRuleContext? context) : base(context)
         {
         }
     }
