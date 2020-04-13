@@ -7,6 +7,12 @@ using System.Text;
 
 namespace PseudoJsTranslator.Ast
 {
+    /// <summary>Represents <see cref="Node"/> and all its children as an ASCII tree string.</summary>
+    /// <remarks>
+    /// Every node type name are optionally followed by its parenthesized start position and/or some extra info
+    /// (such as operator type, identifier name, literal value, function parameters names) in square brackets.
+    /// In sparse arrays, the word <i>undefined</i> is added in place of missing element.
+    /// </remarks>
     public class AsciiTreeBuilderVisitor : AstBaseVisitor<object?>
     {
         public uint VerticalIdent { get; set; } = 1;
@@ -85,13 +91,13 @@ namespace PseudoJsTranslator.Ast
         }
 
         /// <summary>
-        /// Adds extra information wrapped in square brackets and separated by commas to <see cref="Sb"/>.
+        /// Adds node info wrapped in square brackets and separated by commas to <see cref="Sb"/>.
         /// </summary>
         /// <param name="info">Variable number of arguments.</param>
         /// <remarks>
-        /// It's expected that this method will be called in the start of every visit.
-        /// If no information has been provided, square brackets are not added.
-        /// Adds a line terminator to the end.
+        /// This method is expected to be called at the beginning of each visit.
+        /// If no information is provided, square brackets aren't added.
+        /// Adds a line terminator at the end.
         /// </remarks>
         private void AddNodeInfo(params string[] info)
         {
@@ -102,13 +108,11 @@ namespace PseudoJsTranslator.Ast
             Sb.AppendLine();
         }
 
-        /// <summary>
-        /// Visits all provided children with <see cref="Depth"/> and <see cref="DepthsWithUnvisitedChildren"/> handling.
-        /// </summary>
+        /// <summary>Visits all child nodes.</summary>
         /// <param name="children">Variable number of arguments.</param>
         /// <remarks>
         /// It must be called no more than once on the parent node.
-        /// If a child is null, it's treated as an undefined node.
+        /// If the child is null, it's treated as an undefined node.
         /// </remarks>
         private void VisitChildren(params Node[] children)
         {
