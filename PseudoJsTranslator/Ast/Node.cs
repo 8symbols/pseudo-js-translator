@@ -5,29 +5,15 @@ using Antlr4.Runtime;
 
 namespace PseudoJsTranslator.Ast
 {
-    public struct Position
-    {
-        public uint Line { get; set; }
-        public uint Column { get; set; }
-
-        public Position(uint line, uint column)
-        {
-            Line = line;
-            Column = column;
-        }
-
-        public override string ToString() => $"({Line}:{Column})";
-    }
-
     public abstract class Node
     {
-        public Position Start { get; set; }
-        public Position End { get; set; }
+        public SourceLocation? Loc { get; set; }
 
         protected Node(ParserRuleContext context)
         {
-            Start = new Position((uint)context.Start.Line, (uint)context.Start.Column);
-            End = new Position((uint)context.Stop.Line, (uint)context.Stop.Column);
+            var start = new Position((uint)context.Start.Line, (uint)context.Start.Column);
+            var end = new Position((uint)context.Stop.Line, (uint)context.Stop.Column);
+            Loc = new SourceLocation(start, end);
         }
     }
 

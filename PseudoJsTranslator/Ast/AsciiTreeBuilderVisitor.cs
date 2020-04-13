@@ -63,11 +63,15 @@ namespace PseudoJsTranslator.Ast
         }
 
         /// <summary>
-        /// Adds node position to <see cref="Sb"/>.
+        /// Adds parenthesized node position to <see cref="Sb"/> if <see cref="Node.Loc"/> isn't null.
+        /// Otherwise does nothing.
         /// </summary>
         private void AddNodePosition(Node node)
         {
-            Sb.Append('(').Append(node.Start.Line).Append(':').Append(node.Start.Column).Append(")");
+            if (node.Loc.HasValue)
+            {
+                Sb.Append('(').Append(node.Loc.Value.Start).Append(")");
+            }
         }
 
         /// <summary>
