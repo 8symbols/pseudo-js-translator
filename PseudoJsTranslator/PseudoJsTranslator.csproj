@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -21,9 +21,8 @@
     <Antlr4 Update="Grammar\ECMAScript.g4">
       <Generator>MSBuild:Compile</Generator>
       <CustomToolNamespace>PseudoJsTranslator.Grammar</CustomToolNamespace>
-      <Listener>True</Listener>
+      <Listener>False</Listener>
       <Visitor>True</Visitor>
     </Antlr4>
   </ItemGroup>
-
 </Project>
