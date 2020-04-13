@@ -12,6 +12,8 @@ namespace PseudoJsTranslator.Ast
         public uint VerticalIdent { get; set; } = 1;
         public uint HorizontalIdent { get; set; } = 3;
 
+        public bool IsPositionsAdditionEnabled { get; set; } = true;
+
         private uint Depth { get; set; }
         private HashSet<uint> DepthsWithUnvisitedChildren { get; } = new HashSet<uint>();
 
@@ -63,12 +65,12 @@ namespace PseudoJsTranslator.Ast
         }
 
         /// <summary>
-        /// Adds parenthesized node position to <see cref="Sb"/> if <see cref="Node.Loc"/> isn't null.
-        /// Otherwise does nothing.
+        /// Adds parenthesized node position to <see cref="Sb"/> if <see cref="IsPositionsAdditionEnabled"/> is true
+        /// and <see cref="Node.Loc"/> isn't null. Otherwise does nothing.
         /// </summary>
         private void AddNodePosition(Node node)
         {
-            if (node.Loc.HasValue)
+            if (IsPositionsAdditionEnabled && node.Loc.HasValue)
             {
                 Sb.Append('(').Append(node.Loc.Value.Start).Append(")");
             }
