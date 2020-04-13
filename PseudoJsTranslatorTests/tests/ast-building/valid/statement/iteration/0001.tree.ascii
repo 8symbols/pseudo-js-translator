@@ -1,0 +1,41 @@
+Program(1:0)
+|
++---WhileStatement(1:0)
+    |
+    +---SequenceExpression(1:7)
+    |   |
+    |   +---BinaryExpression(1:7)[Less]
+    |       |
+    |       +---Identifier(1:7)[x]
+    |       |
+    |       +---NumericLiteral(1:11)[10]
+    |
+    +---BlockStatement(1:15)
+        |
+        +---ExpressionStatement(1:17)
+        |   |
+        |   +---SequenceExpression(1:17)
+        |       |
+        |       +---AssignmentExpression(1:17)[Assign]
+        |           |
+        |           +---Identifier(1:17)[x]
+        |           |
+        |           +---BinaryExpression(1:21)[Addition]
+        |               |
+        |               +---Identifier(1:21)[x]
+        |               |
+        |               +---NumericLiteral(1:25)[1]
+        |
+        +---ExpressionStatement(1:28)
+            |
+            +---SequenceExpression(1:28)
+                |
+                +---AssignmentExpression(1:28)[Assign]
+                    |
+                    +---Identifier(1:28)[y]
+                    |
+                    +---BinaryExpression(1:32)[Subtraction]
+                        |
+                        +---Identifier(1:32)[y]
+                        |
+                        +---NumericLiteral(1:36)[1]

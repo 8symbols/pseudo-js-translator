@@ -1,0 +1,15 @@
+Program(1:0)
+|
++---ExpressionStatement(1:0)
+    |
+    +---SequenceExpression(1:0)
+        |
+        +---LogicalExpression(1:0)[LogicalOr]
+            |
+            +---LogicalExpression(1:0)[LogicalOr]
+            |   |
+            |   +---Identifier(1:0)[x]
+            |   |
+            |   +---Identifier(1:5)[y]
+            |
+            +---Identifier(1:10)[z]

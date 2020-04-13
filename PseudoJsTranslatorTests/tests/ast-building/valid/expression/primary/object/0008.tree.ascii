@@ -1,0 +1,23 @@
+Program(1:0)
+|
++---ExpressionStatement(1:0)
+    |
+    +---SequenceExpression(1:0)
+        |
+        +---AssignmentExpression(1:0)[Assign]
+            |
+            +---Identifier(1:0)[x]
+            |
+            +---ObjectExpression(1:4)
+                |
+                +---Property(1:6)
+                |   |
+                |   +---Identifier(1:6)[x]
+                |   |
+                |   +---NumericLiteral(1:9)[1]
+                |
+                +---Property(1:12)
+                    |
+                    +---Identifier(1:12)[x]
+                    |
+                    +---NumericLiteral(1:15)[2]

@@ -1,0 +1,17 @@
+Program(1:0)
+|
++---ExpressionStatement(1:0)
+    |
+    +---SequenceExpression(1:0)
+        |
+        +---BinaryExpression(1:0)[Multiplication]
+            |
+            +---SequenceExpression(1:1)
+            |   |
+            |   +---BinaryExpression(1:1)[Addition]
+            |       |
+            |       +---NumericLiteral(1:1)[1]
+            |       |
+            |       +---NumericLiteral(1:5)[2]
+            |
+            +---NumericLiteral(1:11)[3]

@@ -1,0 +1,15 @@
+Program(1:0)
+|
++---VariableDeclaration(1:4)
+    |
+    +---VariableDeclarator(1:4)
+    |   |
+    |   +---Identifier(1:4)[eval]
+    |   |
+    |   +---NumericLiteral(1:11)[42]
+    |
+    +---VariableDeclarator(1:15)
+        |
+        +---Identifier(1:15)[arguments]
+        |
+        +---NumericLiteral(1:27)[42]

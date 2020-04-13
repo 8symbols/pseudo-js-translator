@@ -1,0 +1,23 @@
+Program(1:0)
+|
++---IfStatement(1:0)
+    |
+    +---SequenceExpression(1:4)
+    |   |
+    |   +---Identifier(1:4)[morning]
+    |
+    +---ExpressionStatement(1:13)
+    |   |
+    |   +---SequenceExpression(1:13)
+    |       |
+    |       +---CallExpression(1:13)
+    |           |
+    |           +---Identifier(1:13)[goodMorning]
+    |
+    +---ExpressionStatement(1:33)
+        |
+        +---SequenceExpression(1:33)
+            |
+            +---CallExpression(1:33)
+                |
+                +---Identifier(1:33)[goodDay]

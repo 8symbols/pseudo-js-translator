@@ -1,0 +1,13 @@
+Program(1:0)
+|
++---VariableDeclaration(1:4)
+    |
+    +---VariableDeclarator(1:4)
+        |
+        +---Identifier(1:4)[hi]
+        |
+        +---FunctionExpression(1:9)
+            |
+            +---Identifier(1:9)[arguments]
+            |
+            +---FunctionBody(1:32)

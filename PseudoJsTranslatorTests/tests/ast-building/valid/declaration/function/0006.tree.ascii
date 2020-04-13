@@ -1,0 +1,15 @@
+Program(1:0)
+|
++---FunctionDeclaration(1:0)[a]
+    |
+    +---Identifier(1:0)[hello]
+    |
+    +---FunctionBody(1:20)
+        |
+        +---ExpressionStatement(1:20)
+            |
+            +---SequenceExpression(1:20)
+                |
+                +---CallExpression(1:20)
+                    |
+                    +---Identifier(1:20)[sayHi]

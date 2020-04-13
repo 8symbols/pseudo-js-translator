@@ -1,0 +1,13 @@
+Program(1:0)
+|
++---FunctionDeclaration(1:0)
+    |
+    +---Identifier(1:0)[eval]
+    |
+    +---FunctionBody(1:18)
+        |
+        +---FunctionDeclaration(1:18)
+            |
+            +---Identifier(1:18)[inner]
+            |
+            +---FunctionBody(1:37)

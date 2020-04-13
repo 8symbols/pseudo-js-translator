@@ -1,0 +1,19 @@
+Program(1:0)
+|
++---BlockStatement(1:0)
+    |
+    +---ExpressionStatement(1:2)
+    |   |
+    |   +---SequenceExpression(1:2)
+    |       |
+    |       +---CallExpression(1:2)
+    |           |
+    |           +---Identifier(1:2)[doThis]
+    |
+    +---ExpressionStatement(1:12)
+        |
+        +---SequenceExpression(1:12)
+            |
+            +---CallExpression(1:12)
+                |
+                +---Identifier(1:12)[doThat]

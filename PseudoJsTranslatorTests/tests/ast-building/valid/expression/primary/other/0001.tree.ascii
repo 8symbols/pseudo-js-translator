@@ -1,0 +1,7 @@
+Program(2:4)
+|
++---ExpressionStatement(2:4)
+    |
+    +---SequenceExpression(2:4)
+        |
+        +---NumericLiteral(2:4)[42]

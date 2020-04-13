@@ -1,0 +1,7 @@
+Program(1:0)
+|
++---FunctionDeclaration(1:0)
+    |
+    +---Identifier(1:0)[arguments]
+    |
+    +---FunctionBody(1:23)

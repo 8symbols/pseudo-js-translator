@@ -1,0 +1,9 @@
+Program(1:0)
+|
++---VariableDeclaration(1:4)
+    |
+    +---VariableDeclarator(1:4)
+        |
+        +---Identifier(1:4)[answer]
+        |
+        +---NumericLiteral(1:13)[42]

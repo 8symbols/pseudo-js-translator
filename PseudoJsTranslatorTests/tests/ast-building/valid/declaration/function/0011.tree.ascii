@@ -1,0 +1,21 @@
+Program(1:0)
+|
++---VariableDeclaration(1:4)
+    |
+    +---VariableDeclarator(1:4)
+        |
+        +---Identifier(1:4)[hello]
+        |
+        +---FunctionExpression(1:12)
+            |
+            +---Identifier(1:12)[hi]
+            |
+            +---FunctionBody(1:28)
+                |
+                +---ExpressionStatement(1:28)
+                    |
+                    +---SequenceExpression(1:28)
+                        |
+                        +---CallExpression(1:28)
+                            |
+                            +---Identifier(1:28)[sayHi]

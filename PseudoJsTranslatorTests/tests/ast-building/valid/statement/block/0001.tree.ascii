@@ -1,0 +1,9 @@
+Program(1:0)
+|
++---BlockStatement(1:0)
+    |
+    +---ExpressionStatement(1:2)
+        |
+        +---SequenceExpression(1:2)
+            |
+            +---Identifier(1:2)[foo]

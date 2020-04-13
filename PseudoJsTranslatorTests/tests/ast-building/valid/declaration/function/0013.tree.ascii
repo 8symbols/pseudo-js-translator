@@ -1,0 +1,17 @@
+Program(1:0)
+|
++---FunctionDeclaration(1:0)
+    |
+    +---Identifier(1:0)[test]
+    |
+    +---FunctionBody(1:18)
+        |
+        +---ExpressionStatement(1:18)
+            |
+            +---SequenceExpression(1:18)
+                |
+                +---BinaryExpression(1:18)[Addition]
+                    |
+                    +---StringLiteral(1:18)["42"]
+                    |
+                    +---NumericLiteral(1:25)[42]

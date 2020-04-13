@@ -1,0 +1,23 @@
+Program(1:0)
+|
++---ExpressionStatement(1:0)
+    |
+    +---SequenceExpression(1:0)
+        |
+        +---CallExpression(1:0)
+            |
+            +---MemberExpression(1:0)[a.b]
+            |   |
+            |   +---MemberExpression(1:0)[a.b]
+            |   |   |
+            |   |   +---MemberExpression(1:0)[a.b]
+            |   |   |   |
+            |   |   |   +---Identifier(1:0)[earth]
+            |   |   |   |
+            |   |   |   +---Identifier(1:6)[asia]
+            |   |   |
+            |   |   +---Identifier(1:11)[Indonesia]
+            |   |
+            |   +---Identifier(1:21)[prepareForElection]
+            |
+            +---NumericLiteral(1:40)[2014]

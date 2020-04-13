@@ -1,0 +1,15 @@
+Program(1:0)
+|
++---ExpressionStatement(1:0)
+    |
+    +---SequenceExpression(1:0)
+        |
+        +---MemberExpression(1:0)[a.b]
+            |
+            +---CallExpression(1:0)
+            |   |
+            |   +---Identifier(1:0)[universe]
+            |   |
+            |   +---NumericLiteral(1:9)[42]
+            |
+            +---Identifier(1:13)[galaxies]

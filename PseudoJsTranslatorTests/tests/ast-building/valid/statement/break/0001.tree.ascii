@@ -1,0 +1,23 @@
+Program(1:0)
+|
++---WhileStatement(1:0)
+    |
+    +---SequenceExpression(1:7)
+    |   |
+    |   +---BooleanLiteral(1:7)[True]
+    |
+    +---BlockStatement(1:13)
+        |
+        +---IfStatement(2:4)
+            |
+            +---SequenceExpression(2:8)
+            |   |
+            |   +---Identifier(2:8)[x]
+            |
+            +---BreakStatement(2:11)
+            |
+            +---ExpressionStatement(4:9)
+                |
+                +---SequenceExpression(4:9)
+                    |
+                    +---Identifier(4:9)[y]

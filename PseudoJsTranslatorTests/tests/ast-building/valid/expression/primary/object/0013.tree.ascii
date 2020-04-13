@@ -1,0 +1,29 @@
+Program(1:0)
+|
++---ExpressionStatement(1:0)
+|   |
+|   +---SequenceExpression(1:0)
+|       |
+|       +---StringLiteral(1:0)["use strict"]
+|
++---ExpressionStatement(1:13)
+    |
+    +---SequenceExpression(1:13)
+        |
+        +---AssignmentExpression(1:13)[Assign]
+            |
+            +---Identifier(1:13)[x]
+            |
+            +---ObjectExpression(1:15)
+                |
+                +---Property(1:16)
+                |   |
+                |   +---Identifier(1:16)[y]
+                |   |
+                |   +---NumericLiteral(1:18)[1]
+                |
+                +---Property(1:20)
+                    |
+                    +---Identifier(1:20)[y]
+                    |
+                    +---NumericLiteral(1:22)[1]

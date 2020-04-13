@@ -1,0 +1,21 @@
+Program(1:0)
+|
++---VariableDeclaration(1:4)
+    |
+    +---VariableDeclarator(1:4)
+    |   |
+    |   +---Identifier(1:4)[x]
+    |   |
+    |   +---NumericLiteral(1:8)[14]
+    |
+    +---VariableDeclarator(1:12)
+    |   |
+    |   +---Identifier(1:12)[y]
+    |   |
+    |   +---NumericLiteral(1:16)[3]
+    |
+    +---VariableDeclarator(1:19)
+        |
+        +---Identifier(1:19)[z]
+        |
+        +---NumericLiteral(1:23)[1977]

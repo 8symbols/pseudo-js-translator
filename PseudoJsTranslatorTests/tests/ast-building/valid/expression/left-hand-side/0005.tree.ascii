@@ -1,0 +1,15 @@
+Program(1:0)
+|
++---ExpressionStatement(1:0)
+    |
+    +---SequenceExpression(1:0)
+        |
+        +---MemberExpression(1:0)[a[b]]
+            |
+            +---Identifier(1:0)[universe]
+            |
+            +---SequenceExpression(1:9)
+                |
+                +---Identifier(1:9)[galaxyName]
+                |
+                +---Identifier(1:21)[otherUselessName]

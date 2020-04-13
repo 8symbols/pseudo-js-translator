@@ -1,0 +1,17 @@
+Program(1:0)
+|
++---IfStatement(1:0)
+    |
+    +---SequenceExpression(1:4)
+    |   |
+    |   +---BooleanLiteral(1:4)[True]
+    |
+    +---ExpressionStatement(1:10)
+    |   |
+    |   +---SequenceExpression(1:10)
+    |       |
+    |       +---CallExpression(1:10)
+    |           |
+    |           +---Identifier(1:10)[that]
+    |
+    +---EmptyStatement(2:6)

@@ -1,0 +1,11 @@
+Program(1:0)
+|
++---WhileStatement(1:0)
+    |
+    +---SequenceExpression(1:7)
+    |   |
+    |   +---BooleanLiteral(1:7)[True]
+    |
+    +---BlockStatement(1:13)
+        |
+        +---BreakStatement(1:15)
