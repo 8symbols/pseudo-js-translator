@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PseudoJsTranslator.Grammar
 {
-    internal class ErrorListener : BaseErrorListener
+    internal class ErrorsCollectorListener : BaseErrorListener
     {
         private readonly List<SyntaxError> _errors = new List<SyntaxError>();
 

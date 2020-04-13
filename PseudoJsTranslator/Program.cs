@@ -40,7 +40,7 @@ namespace PseudoJsTranslator
 
         public static IParseTree? TryToBuildParseTree(ECMAScriptParser parser)
         {
-            var listener = new ErrorListener();
+            var listener = new ErrorsCollectorListener();
             parser.AddErrorListener(listener);
             var program = parser.program();
             if (parser.NumberOfSyntaxErrors != 0)
