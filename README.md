@@ -19,4 +19,4 @@ The abstract syntax tree structure is based on [the ESTree Spec](https://github.
 ## Tests
 
 Most of the tests were shamelessly stolen from [the Esprima repository](https://github.com/jquery/esprima/tree/master/test/fixtures).
-If you are looking for a file containing all supported language constructs, check out [this one](https://github.com/8symbols/pseudo-js-translator/blob/master/PseudoJsTranslatorTests/tests/ast-building/valid/all-in-one/0000.js).
+If you are looking for a test demonstrating all supported language constructs, check out [this one](https://github.com/8symbols/pseudo-js-translator/blob/master/PseudoJsTranslatorTests/tests/ast-building/valid/all-in-one/0000.js).
