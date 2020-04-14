@@ -5,7 +5,7 @@ namespace PseudoJsTranslator.Grammar
 {
     internal class ErrorsCollectorListener : BaseErrorListener
     {
-        private readonly List<SyntaxError> _errors = new List<SyntaxError>();
+        private List<SyntaxError> Errors { get; } = new List<SyntaxError>();
 
         public override void SyntaxError(
             IRecognizer recognizer,
@@ -15,9 +15,9 @@ namespace PseudoJsTranslator.Grammar
             string msg,
             RecognitionException e)
         {
-            _errors.Add(new SyntaxError(recognizer, offendingSymbol, line, charPositionInLine, msg, e));
+            Errors.Add(new SyntaxError(recognizer, offendingSymbol, line, charPositionInLine, msg, e));
         }
 
-        public override string ToString() => string.Join('\n', _errors);
+        public override string ToString() => string.Join('\n', Errors);
     }
 }

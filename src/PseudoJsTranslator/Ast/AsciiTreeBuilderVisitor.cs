@@ -17,20 +17,18 @@ namespace PseudoJsTranslator.Ast
     {
         public uint VerticalIdent { get; set; } = 1;
         public uint HorizontalIdent { get; set; } = 3;
-
         public bool IsPositionsAdditionEnabled { get; set; } = true;
 
-        private uint Depth { get; set; }
-        private HashSet<uint> DepthsWithUnvisitedChildren { get; } = new HashSet<uint>();
-
-        private StringBuilder Sb { get; } = new StringBuilder();
+        private uint _depth;
+        private readonly HashSet<uint> _depthsWithUnvisitedChildren = new HashSet<uint>();
+        private readonly StringBuilder _sb = new StringBuilder();
 
         /// <summary>
         /// Returns built tree.
         /// </summary>
         public string GetStringTree()
         {
-            return Sb.ToString();
+            return _sb.ToString();
         }
 
         /// <summary>
@@ -38,60 +36,60 @@ namespace PseudoJsTranslator.Ast
         /// </summary>
         public void ClearTree()
         {
-            Sb.Clear();
+            _sb.Clear();
         }
 
         /// <summary>
-        /// Adds ASCII characters that connect nodes to <see cref="Sb"/>.
+        /// Adds ASCII characters that connect nodes to <see cref="_sb"/>.
         /// </summary>
         private void AddIdents()
         {
-            if (Depth == 0)
+            if (_depth == 0)
             {
                 return;
             }
 
             for (var i = 0; i < VerticalIdent; ++i)
             {
-                for (var j = 1; j < Depth; ++j)
+                for (var j = 1; j < _depth; ++j)
                 {
-                    Sb.Append(DepthsWithUnvisitedChildren.Contains((uint)j) ? '|' : ' ');
-                    Sb.Append(' ', (int)HorizontalIdent);
+                    _sb.Append(_depthsWithUnvisitedChildren.Contains((uint)j) ? '|' : ' ');
+                    _sb.Append(' ', (int)HorizontalIdent);
                 }
-                Sb.AppendLine("|");
+                _sb.AppendLine("|");
             }
 
-            for (var i = 1; i < Depth; ++i)
+            for (var i = 1; i < _depth; ++i)
             {
-                Sb.Append(DepthsWithUnvisitedChildren.Contains((uint)i) ? '|' : ' ');
-                Sb.Append(' ', (int)HorizontalIdent);
+                _sb.Append(_depthsWithUnvisitedChildren.Contains((uint)i) ? '|' : ' ');
+                _sb.Append(' ', (int)HorizontalIdent);
             }
-            Sb.Append('+');
-            Sb.Append('-', (int)HorizontalIdent);
+            _sb.Append('+');
+            _sb.Append('-', (int)HorizontalIdent);
         }
 
         /// <summary>
-        /// Adds parenthesized node position to <see cref="Sb"/> if <see cref="IsPositionsAdditionEnabled"/> is true
+        /// Adds parenthesized node position to <see cref="_sb"/> if <see cref="IsPositionsAdditionEnabled"/> is true
         /// and <see cref="Node.Loc"/> isn't null. Otherwise does nothing.
         /// </summary>
         private void AddNodePosition(Node node)
         {
             if (IsPositionsAdditionEnabled && node.Loc.HasValue)
             {
-                Sb.Append('(').Append(node.Loc.Value.Start).Append(")");
+                _sb.Append('(').Append(node.Loc.Value.Start).Append(")");
             }
         }
 
         /// <summary>
-        /// Adds node type name to <see cref="Sb"/>.
+        /// Adds node type name to <see cref="_sb"/>.
         /// </summary>
         private void AddNodeMetaInfo(Node node)
         {
-            Sb.Append(node.GetType().Name);
+            _sb.Append(node.GetType().Name);
         }
 
         /// <summary>
-        /// Adds node info wrapped in square brackets and separated by commas to <see cref="Sb"/>.
+        /// Adds node info wrapped in square brackets and separated by commas to <see cref="_sb"/>.
         /// </summary>
         /// <param name="info">Variable number of arguments.</param>
         /// <remarks>
@@ -103,9 +101,9 @@ namespace PseudoJsTranslator.Ast
         {
             if (info.Length != 0)
             {
-                Sb.Append('[').AppendJoin(", ", info).Append(']');
+                _sb.Append('[').AppendJoin(", ", info).Append(']');
             }
-            Sb.AppendLine();
+            _sb.AppendLine();
         }
 
         /// <summary>Visits all child nodes.</summary>
@@ -116,14 +114,14 @@ namespace PseudoJsTranslator.Ast
         /// </remarks>
         private void VisitChildren(params Node[] children)
         {
-            ++Depth;
-            DepthsWithUnvisitedChildren.Add(Depth);
+            ++_depth;
+            _depthsWithUnvisitedChildren.Add(_depth);
 
             foreach (var child in children)
             {
                 if (child == children[^1])
                 {
-                    DepthsWithUnvisitedChildren.Remove(Depth);
+                    _depthsWithUnvisitedChildren.Remove(_depth);
                 }
                 if (child != null)
                 {
@@ -135,14 +133,14 @@ namespace PseudoJsTranslator.Ast
                 }
             }
 
-            DepthsWithUnvisitedChildren.Remove(Depth);
-            --Depth;
+            _depthsWithUnvisitedChildren.Remove(_depth);
+            --_depth;
         }
 
         private void VisitUndefinedNode()
         {
             AddIdents();
-            Sb.AppendLine("undefined");
+            _sb.AppendLine("undefined");
         }
 
         public override object? Visit(Node node)
