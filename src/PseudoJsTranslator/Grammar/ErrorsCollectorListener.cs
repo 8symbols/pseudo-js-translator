@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace PseudoJsTranslator.Grammar
 {
-    internal class ErrorsCollectorListener : BaseErrorListener
+    public class ErrorsCollectorListener : BaseErrorListener
     {
-        private List<SyntaxError> Errors { get; } = new List<SyntaxError>();
+        public List<SyntaxError> Errors { get; } = new List<SyntaxError>();
 
         public override void SyntaxError(
             IRecognizer recognizer,

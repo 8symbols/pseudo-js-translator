@@ -2,7 +2,7 @@
 
 namespace PseudoJsTranslator.Grammar
 {
-    internal class SyntaxError
+    public class SyntaxError
     {
         public IRecognizer Recognizer { get; }
         public IToken OffendingSymbol { get; }
