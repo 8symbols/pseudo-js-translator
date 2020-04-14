@@ -14,12 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PseudoJsTranslator\PseudoJsTranslator.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="tests\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\PseudoJsTranslator\PseudoJsTranslator.csproj" />
   </ItemGroup>
 </Project>
